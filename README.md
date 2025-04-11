@@ -1,19 +1,39 @@
 # 3DmicrogliaAnalysis_code
 
+# Image Analysis Scripts
+
 ## Overview
 
 This repository contains scripts for image analysis using Groovy and Python. The scripts are designed to process and analyze confocal microscopy images, specifically focusing on cell segmentation and marker quantification.
 
 ## Scripts
 
-### Groovy Script
+### Groovy Scripts
 
-#### Description
+#### 1. lifToTiffSeg.groovy
 
-The Groovy script processes confocal microscopy images to quantify the presence of specific markers within segmented cells. It uses various ImageJ plugins and libraries to handle image processing tasks.
+**Description**: This script converts `.lif` files to `.tiff` format and prepares images for segmentation.
 
-#### Usage
+**Usage**:
+1. **Input Parameters**:
+    - `inputFiles`: Directory containing the `.lif` files.
+    - `outputDir`: Directory to save the converted `.tiff` files.
+    - `greenModel`: Path to the green model file.
+    - `redModel`: Path to the red model file.
+    - `refIndex`: Reference channel index.
+    - `targetIndex`: Target channel index.
 
+2. **Execution**:
+    - Run the script in ImageJ/Fiji with the specified input parameters.
+
+3. **Output**:
+    - The script generates `.tiff` files in the specified output directory.
+
+#### 2. 3DdoubleQuantification_perImage.groovy
+
+**Description**: This script quantifies the presence of two markers within segmented cells in 3D images.
+
+**Usage**:
 1. **Input Parameters**:
     - `inputFilesDir`: Directory containing the raw image files.
     - `outputDir`: Directory to save the results.
@@ -30,14 +50,26 @@ The Groovy script processes confocal microscopy images to quantify the presence 
 3. **Output**:
     - The script generates a CSV file with the quantification results and saves merged images in the specified output directory.
 
-#### Script Details
+#### 3. 3DtripleQuantification_perImage.groovy
 
-- **Segmentation**:
-    - The script uses the `Objects3DPopulation` class to segment cells based on the provided masks.
-- **Marker Quantification**:
-    - It calculates the mean and standard deviation of marker intensities within segmented cells.
-- **Results**:
-    - The script saves the quantification results in a CSV file and merged images in the output directory.
+**Description**: This script quantifies the presence of three markers within segmented cells in 3D images.
+
+**Usage**:
+1. **Input Parameters**:
+    - `inputFilesDir`: Directory containing the raw image files.
+    - `outputDir`: Directory to save the results.
+    - `dapiChannel`: Channel number for DAPI.
+    - `marker1Channel`: Channel number for Marker1.
+    - `microgliaChannel`: Channel number for Microglia.
+    - `mdkChannel`: Channel number for MDK.
+    - `lucChannel`: Channel number for LUC.
+    - `applyDAPI`: Boolean to apply DAPI.
+
+2. **Execution**:
+    - Run the script in ImageJ/Fiji with the specified input parameters.
+
+3. **Output**:
+    - The script generates a CSV file with the quantification results and saves merged images in the specified output directory.
 
 ### Python Script
 
@@ -45,8 +77,7 @@ The Groovy script processes confocal microscopy images to quantify the presence 
 
 The Python script uses the Cellpose library to run cell segmentation with specified parameters. It loads images, runs the Cellpose model, and saves the segmentation results.
 
-#### Usage
-
+**Usage**:
 1. **Input Parameters**:
     - `directory`: Directory containing the raw image files.
     - `pretrained_model`: Pretrained model to use (e.g., `cyto3`).
@@ -64,18 +95,9 @@ The Python script uses the Cellpose library to run cell segmentation with specif
 3. **Output**:
     - The script saves the segmentation results in the specified directory.
 
-#### Script Details
-
-- **Model Loading**:
-    - The script loads the Cellpose model with the specified parameters.
-- **Image Processing**:
-    - It processes the images and runs the Cellpose model to segment cells.
-- **Results**:
-    - The script saves the segmentation results in the specified directory.
-
 ## Requirements
 
-### Groovy Script
+### Groovy Scripts
 
 - ImageJ/Fiji
 - Required plugins:
@@ -103,7 +125,7 @@ The Python script uses the Cellpose library to run cell segmentation with specif
 
 ## Installation
 
-### Groovy Script
+### Groovy Scripts
 
 1. Install ImageJ/Fiji.
 2. Install the required plugins.
@@ -120,7 +142,6 @@ The Python script uses the Cellpose library to run cell segmentation with specif
 
 This repository is licensed under the MIT License. See the `LICENSE` file for more information.
 
-## Contact
 
-For any questions or issues, please contact [your-email@example.com].
+
 
